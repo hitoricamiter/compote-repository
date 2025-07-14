@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${product.title}]] Good</title>
+</head>
+<body>
+<h1 data-th-text="${product.title}"></h1>
+<ul>
+    <li><strong>ID</strong>: <span data-th-text="${product.id}"></span></li>
+    <li><strong>Name</strong>: <span data-th-text="${product.title}"></span></li>
+    <li><strong>Desc</strong>: <span data-th-text="${product.details}"></span></li>
+</ul>
+<a data-th-href="@{/catalogue/products/{productId}(productId=${product.id})}">Change</a>
+<form method="post" th:action="@{/catalogue/products/{productId}/delete(productId=${product.id})}">
+    <button type="submit">Delete</button>
+
+
+</form>
+
+</body>
+</html>

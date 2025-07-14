@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.zaikin</groupId>
-	<artifactId>compote-microservices</artifactId>
+	<artifactId>manager-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>compote-microservices</name>
-	<description>Demo project for Spring Boot</description>
+	<name>manager-app</name>
+	<description>Manager Application: Keycloak, Metrics, CRUD et cetera</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -81,6 +81,7 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+
 				</configuration>
 			</plugin>
 		</plugins>
