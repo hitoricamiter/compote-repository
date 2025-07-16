@@ -1,6 +1,6 @@
-package ru.zaikin.manager.service;
+package ru.zaikin.service;
 
-import ru.zaikin.manager.entity.Product;
+import ru.zaikin.entity.Product;
 import java.util.List;
 import java.util.Optional;
 

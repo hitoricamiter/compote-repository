@@ -1,7 +1,7 @@
-package ru.zaikin.manager.service;
+package ru.zaikin.service;
 
-import ru.zaikin.manager.entity.Product;
-import ru.zaikin.manager.repository.ProductRepository;
+import ru.zaikin.entity.Product;
+import ru.zaikin.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

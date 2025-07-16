@@ -1,6 +1,6 @@
-package ru.zaikin.manager.repository;
+package ru.zaikin.repository;
 
-import ru.zaikin.manager.entity.Product;
+import ru.zaikin.entity.Product;
 
 import java.util.List;
 import java.util.Optional;
