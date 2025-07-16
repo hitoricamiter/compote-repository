@@ -28,7 +28,7 @@ public class ProductsRestController {
     private final ProductService productService;
 
     @GetMapping
-    public List<Product> getProducts() {
+    public Iterable<Product> getProducts() {
         return this.productService.findAllProducts();
     }
 
