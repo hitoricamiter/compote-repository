@@ -3,7 +3,6 @@ package ru.zaikin.manager.controller;
 import ru.zaikin.manager.client.ProductsRestClient;
 import ru.zaikin.manager.controller.payload.NewProductPayload;
 import ru.zaikin.manager.entity.Product;
-import ru.zaikin.manager.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

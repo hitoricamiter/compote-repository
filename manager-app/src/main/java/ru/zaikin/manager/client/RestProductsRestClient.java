@@ -31,7 +31,7 @@ public class RestProductsRestClient implements ProductsRestClient {
     @Override
     public Product createProduct(String title, String details) {
         try {
-            this.restClient
+            return this.restClient
                     .post()
                     .uri("catalogue-api/products")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -78,7 +78,7 @@ public class RestProductsRestClient implements ProductsRestClient {
             Optional.ofNullable(this.restClient.delete()
                     .uri("/catalogue-api/products/{productId}")
                     .retrieve()
-                    .toBodilessEntity();
+                    .toBodilessEntity());
         } catch (HttpClientErrorException.NotFound e) {
             throw new NoSuchElementException(e);
         }
