@@ -16,6 +16,7 @@ import ru.zaikin.entity.Product;
 import ru.zaikin.service.ProductService;
 
 import java.util.Locale;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class ProductRestController {
 
     @ModelAttribute("product")
     public Product getProduct(@PathVariable int productId) {
-        return this.productService.findProduct(productId).orElseThrow(() -> new NoSuchMessageException("catalogue.errors.product.not_found"));
+        return this.productService.findProduct(productId).orElseThrow(() -> new NoSuchMessageException("Товар не был найден"));
     }
 
     @GetMapping
@@ -36,7 +37,7 @@ public class ProductRestController {
 
     @PatchMapping
     public ResponseEntity<?> updateProduct(@PathVariable int productId, @Valid @RequestBody UpdateProductPayload payload,
-                                           BindingResult bindingResult, Locale locale) throws BindException {
+                                           BindingResult bindingResult) throws BindException {
         if (bindingResult.hasErrors()) {
             if (bindingResult instanceof BindException e) {
                 throw e;
@@ -48,5 +49,18 @@ public class ProductRestController {
             return ResponseEntity.noContent().build();
         }
 
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteProduct(@PathVariable int productId) {
+        this.productService.deleteProduct(productId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<ProblemDetail> handleNoSuchElementException(NoSuchElementException exception, Locale locale) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, this.messageSource.getMessage(exception.getMessage(),
+                        new Object[0], exception.getMessage(), locale)));
     }
 }

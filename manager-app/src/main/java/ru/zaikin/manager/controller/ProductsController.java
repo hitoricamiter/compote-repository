@@ -1,5 +1,6 @@
 package ru.zaikin.manager.controller;
 
+import ru.zaikin.manager.client.ProductsRestClient;
 import ru.zaikin.manager.controller.payload.NewProductPayload;
 import ru.zaikin.manager.entity.Product;
 import ru.zaikin.manager.service.ProductService;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("catalogue/products")
 public class ProductsController {
 
-    private final ProductService productService;
+    private final ProductsRestClient productService;
 
     @GetMapping("list")
     public String getProductsList(Model model) {
@@ -43,7 +44,7 @@ public class ProductsController {
             return "catalogue/products/new_product";
         } else {
             Product product = this.productService.createProduct(payload.title(), payload.details());
-            return "redirect:/catalogue/products/%d".formatted(product.getId());
+            return "redirect:/catalogue/products/%d".formatted(product.id());
         }
     }
 }

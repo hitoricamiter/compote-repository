@@ -1,8 +1,8 @@
 package ru.zaikin.manager.controller;
 
+import ru.zaikin.manager.client.ProductsRestClient;
 import ru.zaikin.manager.controller.payload.UpdateProductPayload;
 import ru.zaikin.manager.entity.Product;
-import ru.zaikin.manager.service.ProductService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductsRestClient productService;
 
     private final MessageSource messageSource;
 
@@ -54,14 +54,14 @@ public class ProductController {
                     .toList());
             return "catalogue/products/edit";
         } else {
-            this.productService.updateProduct(product.getId(), payload.title(), payload.details());
-            return "redirect:/catalogue/products/%d".formatted(product.getId());
+            this.productService.updateProduct(product.id(), payload.title(), payload.details());
+            return "redirect:/catalogue/products/%d".formatted(product.id());
         }
     }
 
     @PostMapping("delete")
     public String deleteProduct(@ModelAttribute("product") Product product) {
-        this.productService.deleteProduct(product.getId());
+        this.productService.deleteProduct(product.id());
         return "redirect:/catalogue/products/list";
     }
 

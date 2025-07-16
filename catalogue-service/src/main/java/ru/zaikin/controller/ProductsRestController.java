@@ -26,7 +26,6 @@ import java.util.Map;
 @RequestMapping("/catalogue-api/products")
 public class ProductsRestController {
     private final ProductService productService;
-    private final MessageSource messageSource;
 
     @GetMapping
     public List<Product> getProducts() {
@@ -35,7 +34,7 @@ public class ProductsRestController {
 
     @PostMapping
     public ResponseEntity<?> createProduct(@Valid @RequestBody NewProductPayload payload, BindingResult bindingResult,
-                                           UriComponentsBuilder uriBuilder, Locale locale) throws BindException {
+                                           UriComponentsBuilder uriBuilder) throws BindException {
         if (bindingResult.hasErrors()) {
             if (bindingResult instanceof BindException e) {
                 throw e;
